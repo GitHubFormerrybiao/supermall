@@ -3,31 +3,17 @@
     <nav-bar class="home-nav">
       <div slot="center">购物街</div>
     </nav-bar>
-    <home-swiper :banners="banners"></home-swiper>
-    <recommend-view :recommends="recommends"></recommend-view>
-    <feature-view></feature-view>
-    <tab-control
-      class="tab-control"
-      :titles="['流行', '新款', '精选']"
-      @tabClick="tabClick"
-    />
-    <goods-list :goods="showGoods" />
-    <ul>
-      <li>数据87</li>
-      <li>数据88</li>
-      <li>数据89</li>
-      <li>数据90</li>
-      <li>数据91</li>
-      <li>数据92</li>
-      <li>数据93</li>
-      <li>数据94</li>
-      <li>数据95</li>
-      <li>数据96</li>
-      <li>数据97</li>
-      <li>数据98</li>
-      <li>数据99</li>
-      <li>数据100</li>
-    </ul>
+    <scroll class="content">
+      <home-swiper :banners="banners"></home-swiper>
+      <recommend-view :recommends="recommends"></recommend-view>
+      <feature-view></feature-view>
+      <tab-control
+        class="tab-control"
+        :titles="['流行', '新款', '精选']"
+        @tabClick="tabClick"
+      />
+      <goods-list :goods="showGoods" />
+    </scroll>
   </div>
 </template>
 
@@ -39,6 +25,7 @@ import FeatureView from "./childComps/FeatureView";
 
 import TabControl from "components/content/tabControl/TabControl";
 import GoodsList from "components/content/goods/GoodsList";
+import Scroll from "components/common/scroll/Scroll";
 
 import { getHomeMultidata, getHomeGoods } from "network/home";
 
@@ -51,6 +38,7 @@ export default {
     FeatureView,
     TabControl,
     GoodsList,
+    Scroll,
   },
   data() {
     return {
@@ -112,7 +100,8 @@ export default {
 <style scoped>
 #home {
   /*padding-top: 44px;*/
-  padding-top: 44px;
+  /* padding-top: 44px; */
+  height: 100vh;
 }
 
 .home-nav {
@@ -130,5 +119,10 @@ export default {
   position: sticky;
   top: 44px;
   z-index: 9;
+}
+.content {
+  height: calc(100%-93px);
+  margin-top: 44px;
+  overflow: hidden;
 }
 </style>
